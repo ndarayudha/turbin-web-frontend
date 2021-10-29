@@ -4,7 +4,6 @@ import Toolbar from '@mui/material/Toolbar';
 import FlashOnOutlinedIcon from '@mui/icons-material/FlashOnOutlined';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Slide from '@mui/material/Slide';
 import { styled } from '@mui/system';
@@ -15,7 +14,9 @@ const NavbarComponent = styled(AppBar)({
     padding: '0 2vw'
 });
 
-const LinkComponent = styled(Link)({
+const LinkComponent = styled('li')({
+    cursor: 'pointer',
+    listStyle: 'none',
     padding: '2px 5px',
     color: '#3b3b3b',
     fontWeight: 500,
@@ -45,9 +46,7 @@ const LinkComponent = styled(Link)({
 
 const HideOnScroll = (props) => {
     const { children, window } = props;
-    // Note that you normally won't need to set the window ref as useScrollTrigger
-    // will default to window.
-    // This is only being set here because the demo is in an iframe.
+    
     const trigger = useScrollTrigger({
         target: window ? window() : undefined,
     });

@@ -23,8 +23,8 @@ const Monitoring = () => {
         backgroundColor: "rgba(70, 144, 255, 0.2)",
       }}
     >
-      <Grid container spacing alignItems="center" justifyContent="center">
-        <Grid item xs={12}>
+      <Grid container alignItems="center" justifyContent="center">
+        <Grid item xs={12} sx={{marginBottom: '40px'}}>
           {" "}
           <Typography
             variant="h4"

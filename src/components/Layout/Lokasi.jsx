@@ -31,7 +31,7 @@ const Lokasi = () => {
             }}
           >
             <Typography variant="h4" sx={{ color: "white", fontWeight: "600", opacity: '0.9' }}>
-              Lokasi Kami
+              Lokasi
             </Typography>
             <Typography variant="h6" sx={{ color: "white", fontWeight: "500", opacity: '0.7' }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu nulla
