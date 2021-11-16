@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -21,11 +22,14 @@ import "swiper/swiper.min.css";
 import "swiper/components/navigation/navigation.min.css";
 import "swiper/components/pagination/pagination.min.css";
 import styled from "styled-components";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Mousewheel, Keyboard, Autoplay]);
 
-const ImgComponent = styled.img``;
+const ImgComponent = styled.img`
+
+`;
 
 const carouselContent = [
   {
@@ -51,12 +55,20 @@ const carouselContent = [
 ];
 
 const Beranda = () => {
+  const smartphoneMin = useMediaQuery('(min-width:320px)');
+    const smartphoneMax = useMediaQuery('(min-width:480px)');
+    const tabletMin = useMediaQuery('(min-width:600px)');
+    const tabletMax = useMediaQuery('(min-width:801px)');
+    const desktopMin = useMediaQuery('(min-width:1025px)');
+    const desktopMax = useMediaQuery('(min-width:1281px)');
   return (
     <Box
       sx={{
-        height: "100vh",
+        height: "100%",
+        width: "100%",
         margin: "0",
       }}
+      id="beranda"
     >
       <Swiper
         // install Swiper modules
@@ -67,8 +79,6 @@ const Beranda = () => {
         navigation
         pagination={true}
         scrollbar={true}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
       >
         {carouselContent.map((content) => (
           <SwiperSlide key={content.id}>
@@ -76,7 +86,7 @@ const Beranda = () => {
               sx={{
                 backgroundColor: "white",
                 height: "100vh",
-                width: "200%",
+                width: "100%",
                 "&:before": {
                   content: '""',
                   position: "absolute",

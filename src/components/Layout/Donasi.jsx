@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -6,6 +7,7 @@ import ImgSaklar from "../../assets/img_saklar.jpg";
 import IcWhatsapp from "../../assets/ic_whatsapp.png";
 import IcMessage from "../../assets/ic_message.png";
 import styled from "styled-components";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const ImgComponent = styled.img`
   width: ${props => props.width ? props.width : '120%'};
@@ -14,21 +16,28 @@ const ImgComponent = styled.img`
 `;
 
 const Donasi = () => {
+  const smartphoneMin = useMediaQuery('(min-width:320px)');
+  const smartphoneMax = useMediaQuery('(min-width:480px)');
+  const tabletMin = useMediaQuery('(min-width:600px)');
+  const tabletMax = useMediaQuery('(min-width:801px)');
+  const desktopMin = useMediaQuery('(min-width:1025px)');
+  const desktopMax = useMediaQuery('(min-width:1281px)');
   return (
     <Box
       sx={{
         margin: "0",
-        height: "100vh",
+        height: {lg: "100vh", xs: "90vh"},
         backgroundColor: "#4690FF",
         overflow: "hidden",
         display: "flex",
       }}
+      id="donasi"
     >
       <Grid container alignItems="center" justifyContent="center">
-        <Grid item xs={6}>
+        <Grid item lg={6} xs={12}>
           <Box
             sx={{
-              width: "120%",
+              width: {lg: "120%", xs: "100%"},
               height: "65vh",
               position: "relative",
               padding: "20px 45px",
@@ -76,26 +85,26 @@ const Donasi = () => {
             >
               Info lebih lanjut hubungi
             </Typography>
-            <Box sx={{display: 'flex', alignItems: 'center'}}>
-                <ImgComponent src={IcWhatsapp} width="30px" margin="0 10px 0 0" alt="Icon Whatsapp"/>
-                <Typography variant="body2">
-                    0852xxxxxxxx
-                </Typography>
-                <ImgComponent src={IcMessage} width="30px" margin="0 10px 0 20px" alt="Icon Message"/>
-                <Typography variant="body2">
-                    client@gmail.com
-                </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <ImgComponent src={IcWhatsapp} width="30px" margin="0 10px 0 0" alt="Icon Whatsapp" />
+              <Typography variant="body2">
+                0852xxxxxxxx
+              </Typography>
+              <ImgComponent src={IcMessage} width="30px" margin="0 10px 0 20px" alt="Icon Message" />
+              <Typography variant="body2">
+                client@gmail.com
+              </Typography>
             </Box>
           </Box>
         </Grid>
         <Grid
           item
-          xs={6}
+          lg={6} xs={12}
           container
           justifyContent="center"
           sx={{ position: "relative" }}
         >
-          <Box
+          {smartphoneMax ? <Box
             sx={{
               height: "100%",
               width: "720px",
@@ -115,7 +124,7 @@ const Donasi = () => {
             }}
           >
             <ImgComponent src={ImgSaklar} alt="Gambar Saklar" />
-          </Box>
+          </Box> : ""}
         </Grid>
       </Grid>
     </Box>

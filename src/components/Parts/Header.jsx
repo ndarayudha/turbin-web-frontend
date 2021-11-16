@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react'
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import FlashOnOutlinedIcon from '@mui/icons-material/FlashOnOutlined';
@@ -6,7 +7,18 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Slide from '@mui/material/Slide';
-import { styled } from '@mui/system';
+import styled from "styled-components";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import MenuIcon from '@mui/icons-material/Menu';
+
+const MenuComponent = styled(MenuIcon)`    
+    border: 1px solid #4690FF;
+    font-size: 2rem;
+    color: #4690FF;
+    border-radius: 3px;
+    border-spacing: 12px;
+    cursor: pointer;
+`;
 
 const NavbarComponent = styled(AppBar)({
     backgroundColor: '#ffffff',
@@ -41,12 +53,24 @@ const LinkComponent = styled('li')({
     ':hover:before': {
         visibility: 'visible',
         width: '100%'
+    },
+    '&.active': {
+        opacity: '1',
+        ':before': {
+            visibility: 'visible',
+            width: '100%'
+        }
     }
 });
 
+const Drawer = styled('div')`
+    background-color: white;
+    padding: 20px;
+`;
+
 const HideOnScroll = (props) => {
     const { children, window } = props;
-    
+
     const trigger = useScrollTrigger({
         target: window ? window() : undefined,
     });
@@ -58,7 +82,67 @@ const HideOnScroll = (props) => {
     );
 }
 
+
 const Header = (props) => {
+
+    const [show, setShowDrawer] = useState(false);
+
+    const smartphoneMin = useMediaQuery('(min-width:320px)');
+    const smartphoneMax = useMediaQuery('(min-width:480px)');
+    const tabletMin = useMediaQuery('(min-width:600px)');
+    const tabletMax = useMediaQuery('(min-width:801px)');
+    const desktopMin = useMediaQuery('(min-width:1025px)');
+    const desktopMax = useMediaQuery('(min-width:1281px)');
+
+
+    const showDrawer = () => {
+        setShowDrawer(!show);
+    }
+
+    const onContentClick = (lokasi, nav) => {
+        const allActiveClass = document.querySelector('.active');
+        if (allActiveClass) {
+            allActiveClass.classList.remove('active');
+        }
+
+        const element = document.getElementById(lokasi);
+        const navElement = document.getElementById(nav);
+        navElement.classList.add('active');
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    const onMobileNavClick = (lokasi, nav) => {
+        const allActiveClass = document.querySelector('.active');
+        if (allActiveClass) {
+            allActiveClass.classList.remove('active');
+        }
+
+        const element = document.getElementById(lokasi);
+        const navElement = document.getElementById(nav);
+        navElement.classList.add('active');
+        element.scrollIntoView({ behavior: 'smooth' });
+        setShowDrawer(!show);
+    }
+
+    const scrollOnTop = () => {
+        const element = document.getElementById('top');
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    const Nav = () => {
+        return <><LinkComponent id="nav-beranda" underline="none" onClick={() => onContentClick('beranda', 'nav-beranda')}>
+            Beranda
+        </LinkComponent><LinkComponent id="nav-lokasi" underline="none" onClick={() => onContentClick('lokasi', 'nav-lokasi')}>
+                Lokasi
+            </LinkComponent><LinkComponent id="nav-monitoring" underline="none" onClick={() => onContentClick('monitoring', 'nav-monitoring')}>
+                Monitoring
+            </LinkComponent><LinkComponent id="nav-artikel" underline="none" onClick={() => onContentClick('artikel', 'nav-artikel')}>
+                Artikel
+            </LinkComponent><LinkComponent id="nav-donasi" underline="none" onClick={() => onContentClick('donasi', 'nav-donasi')}>
+                Donasi
+            </LinkComponent></>
+    }
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <HideOnScroll {...props}>
@@ -68,11 +152,13 @@ const Header = (props) => {
                         <Typography
                             variant="h6"
                             component="div"
+                            onClick={scrollOnTop}
                             sx={{
                                 flexGrow: 1,
                                 fontWeight: '700',
                                 color: '#3b3b3b',
-                                opacity: '0.9'
+                                opacity: '0.9',
+                                cursor: 'pointer'
                             }}>
                             Turbin Listrik
                         </Typography>
@@ -87,23 +173,22 @@ const Header = (props) => {
                                 },
                             }}
                         >
-                            <LinkComponent href="#" underline="none">
-                                {'Beranda'}
-                            </LinkComponent>
-                            <LinkComponent href="#" underline="none">
-                                {'Lokasi'}
-                            </LinkComponent>
-                            <LinkComponent href="#" underline="none">
-                                {'Monitoring'}
-                            </LinkComponent>
-                            <LinkComponent href="#" underline="none">
-                                {'Artikel'}
-                            </LinkComponent>
-                            <LinkComponent href="#" underline="none">
-                                {'Donasi'}
-                            </LinkComponent>
+                            {desktopMin ? <Nav/> : <MenuComponent onClick={showDrawer} />}
                         </Box>
                     </Toolbar>
+                    {show ? <Drawer>
+                        <LinkComponent id="nav-beranda" underline="none" onClick={() => onMobileNavClick('beranda', 'nav-beranda')}>
+                            Beranda
+                        </LinkComponent><LinkComponent id="nav-lokasi" underline="none" onClick={() => onMobileNavClick('lokasi', 'nav-lokasi')}>
+                            Lokasi
+                        </LinkComponent><LinkComponent id="nav-monitoring" underline="none" onClick={() => onMobileNavClick('monitoring', 'nav-monitoring')}>
+                            Monitoring
+                        </LinkComponent><LinkComponent id="nav-artikel" underline="none" onClick={() => onMobileNavClick('artikel', 'nav-artikel')}>
+                            Artikel
+                        </LinkComponent><LinkComponent id="nav-donasi" underline="none" onClick={() => onMobileNavClick('donasi', 'nav-donasi')}>
+                            Donasi
+                        </LinkComponent>
+                    </Drawer> : ''}
                 </NavbarComponent>
             </HideOnScroll>
         </Box>

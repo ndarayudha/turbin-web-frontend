@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -6,6 +7,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
 import ImgTiang from "../../assets/img_tiang.jpg";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const articles = [
   {
@@ -59,13 +61,20 @@ const articles = [
 ];
 
 const Artikel = () => {
+  const smartphoneMin = useMediaQuery('(min-width:320px)');
+    const smartphoneMax = useMediaQuery('(min-width:480px)');
+    const tabletMin = useMediaQuery('(min-width:600px)');
+    const tabletMax = useMediaQuery('(min-width:801px)');
+    const desktopMin = useMediaQuery('(min-width:1025px)');
+    const desktopMax = useMediaQuery('(min-width:1281px)');
   return (
     <Box
       sx={{
-        padding: "80px",
+        padding: `${smartphoneMax ? "80px" : "20px"}`,
         backgroundColor: "white",
         height: "140vh",
       }}
+      id="artikel"
     >
       <Typography
         variant="h4"
@@ -85,7 +94,7 @@ const Artikel = () => {
           flexWrap: "wrap",
         }}
       >
-        {articles.map((article) => (
+        {articles.slice(0, 3).map((article) => (
           <Card
             sx={{
               maxWidth: 345,

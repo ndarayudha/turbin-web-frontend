@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import IcFlash from "../../assets/ic_flash.png";
 import styled from "styled-components";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const ImgComponent = styled.img`
   width: ${(props) => (props.width ? props.width : "0")};
@@ -11,18 +13,25 @@ const ImgComponent = styled.img`
 `;
 
 const Footer = () => {
+  const smartphoneMin = useMediaQuery('(min-width:320px)');
+  const smartphoneMax = useMediaQuery('(min-width:480px)');
+  const tabletMin = useMediaQuery('(min-width:600px)');
+  const tabletMax = useMediaQuery('(min-width:801px)');
+  const desktopMin = useMediaQuery('(min-width:1025px)');
+  const desktopMax = useMediaQuery('(min-width:1281px)');
+
   return (
     <Box
       sx={{
-        height: "40vh",
+        height: "100%",
         backgroundColor: "#14429B",
         display: "flex",
-        flexDirection: "column",
+        flexDirection: `${smartphoneMax ? "row" : "column"}`,
         justifyContent: "center",
       }}
     >
       <Grid container spacing={2}>
-        <Grid item xs={4} sx={{ width: "100%" }}>
+        <Grid item xs={12} lg={4} sx={{ width: "100%" }}>
           <Box
             sx={{
               width: "100%",
@@ -47,7 +56,7 @@ const Footer = () => {
             <ImgComponent src={IcFlash} alt="Icon Flash" width="50px" />
           </Box>
         </Grid>
-        <Grid item xs={8} sx={{ display: "flex" }}>
+        <Grid item xs={12} lg={8} sx={{ display: "flex", marginTop: "20px"}}>
           <Box
             sx={{
               width: "20%",
@@ -127,29 +136,34 @@ const Footer = () => {
             </Typography>
           </Box>
         </Grid>
-      </Grid>
-      <Box
-        sx={{
-          margin: "0",
-          padding: "0",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Typography
-          variant="body2"
+        <Grid item xs={12} lg={12}>
+        <Box
           sx={{
-            color: "#fafafa",
-            fontWeight: "500",
-            opacity: "0.9",
-            textAlign: "center",
+            margin: "0",
+            padding: "0",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          Copyright 2021 | CV Jayla Tech.Id
-        </Typography>
-      </Box>
+          <Typography
+            variant="body2"
+            sx={{
+              color: "#fafafa",
+              fontWeight: "500",
+              opacity: "0.9",
+              textAlign: "center",
+              paddingTop: "20px",
+              paddingBottom: "20px"
+            }}
+          >
+            Copyright 2021 | CV Jayla Tech.Id
+          </Typography>
+        </Box>
+      </Grid>
+      </Grid>
+      
     </Box>
   );
 };

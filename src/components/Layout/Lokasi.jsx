@@ -1,17 +1,25 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import ImgPeta from "../../assets/img_peta.jpg";
 import styled from "styled-components";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const ImgComponent = styled.img`
-  width: 120%;
+  width: ${props => props.width ? props.width : "120%"};
   position: relative;
-  right: -5%;
+  right: ${props => props.right ? props.right : "-5%"};
 `;
 
 const Lokasi = () => {
+  const smartphoneMin = useMediaQuery('(min-width:320px)');
+    const smartphoneMax = useMediaQuery('(min-width:480px)');
+    const tabletMin = useMediaQuery('(min-width:600px)');
+    const tabletMax = useMediaQuery('(min-width:801px)');
+    const desktopMin = useMediaQuery('(min-width:1025px)');
+    const desktopMax = useMediaQuery('(min-width:1281px)');
   return (
     <Box
       sx={{
@@ -21,9 +29,10 @@ const Lokasi = () => {
         overflow: "hidden",
         display: "flex",
       }}
+      id="lokasi"
     >
       <Grid container alignItems="center" justifyContent="center">
-        <Grid item xs={6} container justifyContent="center">
+        <Grid item lg={6} xs={12} container justifyContent="center">
           <Box
             sx={{
               height: "100%",
@@ -41,8 +50,8 @@ const Lokasi = () => {
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={6}>
-          <ImgComponent src={ImgPeta} alt="Lokasi" />
+        <Grid item lg={6} xs={12}>
+          <ImgComponent src={ImgPeta} right={`${smartphoneMax ? '0' : '5px'}`} width={`${smartphoneMax ? '120%' : "110%"}`} alt="Lokasi" />
         </Grid>
       </Grid>
     </Box>
