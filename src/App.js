@@ -7,18 +7,22 @@ import Donasi from "./components/Layout/Donasi";
 import Lokasi from "./components/Layout/Lokasi";
 import Monitoring from "./components/Layout/Monitoring";
 import Box from '@mui/material/Box';
+import Layout from './components/Dashboard/Layout/Layout'
 
-function App() {
+const App = () => {
+  const isAdmin = false;
+
   return (
     <Box>
-      <div id="top"></div>
-      <Header />
-      <Beranda />
-      <Lokasi />
-      <Monitoring />
-      <Artikel />
-      <Donasi />
-      <Footer />
+      {isAdmin ? <React.Fragment>
+        <Header/>
+        <Beranda/>
+        <Lokasi/>
+        <Monitoring/>
+        <Artikel/>
+        <Donasi/>
+        <Footer/>
+      </React.Fragment> : <Layout/>}
     </Box>
   );
 }
