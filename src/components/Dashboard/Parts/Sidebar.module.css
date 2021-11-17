@@ -1,4 +1,93 @@
-.sidebar{
-    background-color: #4690FF;
-    flex: .20;
+.sidebar {
+  background-color: #4690ff;
+  flex: 0.2;
+  position: relative;
+}
+.sidebar hr {
+  margin: auto;
+  width: 10vw;
+}
+.sidebar__logo {
+  display: flex;
+  width: 100%;
+  color: white;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 13px;
+  opacity: 0.9;
+}
+.sidebar__logo img {
+  width: 50px;
+}
+.sidebar__link {
+  padding: 50px 30px;
+  position: relative;
+}
+.sidebar__link img {
+  margin-right: 20px;
+}
+.sidebar__link li {
+  list-style: none;
+  margin: 20px 0;
+}
+.sidebar__link li a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 26px;
+  display: flex;
+  align-items: center;
+}
+.nav__item:hover {
+  border-radius: 5px;
+  background-color: #14429b;
+}
+.active {
+  border-radius: 5px;
+  background-color: #14429b;
+}
+.sidebar__profile {
+  padding: 0 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: #255cc9;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  position: absolute;
+  width: 80%;
+  height: 25%;
+  top: 70%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sidebar__profile button {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  width: 100%;
+}
+.sidebar__profileAvatar {
+  display: flex;
+  align-items: center;
+}
+.sidebar__profileName {
+  display: flex;
+  flex-direction: column;
+}
+.sidebar__profileName h4 {
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+.sidebar__profileName p {
+  font-size: 0.9rem;
+  font-weight: lighter;
+}
+.sidebar__profileAvatar img {
+  margin: 20px 10px 20px 0;
+  width: 1.5rem;
 }

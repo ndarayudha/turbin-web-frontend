@@ -6,8 +6,8 @@
   box-shadow: -1px 4px 20px -6px rgba(0, 0, 0, 0.8);
 }
 
-
 .layout__content{
-  background-color: blue;
+  background-color: #F1F6FF;
   flex: 1;
+  padding: 30px;
 }

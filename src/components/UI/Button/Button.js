@@ -5,7 +5,7 @@ const ButtonWrapper = styled.button`
   margin-left: ${(props) => (props.ml ? props.ml + "px" : "0px")};
   margin-bottom: ${(props) => (props.mb ? props.mb + "px" : "0px")};
   margin-right: ${(props) => (props.mr ? props.mr + "px" : "0px")};
-  background-color: ${(props) => (props.primary ? "#5E2BC6" : "#ffffff")};
+  background-color: ${(props) => (props.primary ? "#14429B" : "#ffffff")};
   width: ${props => props.width + "rem"};
   padding: 7px 21px;
   color: ${(props) => (props.primary ? "#fafafa" : "#5E2BC6")};
