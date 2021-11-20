@@ -1,0 +1,16 @@
+.article{
+    padding: 20px;
+}
+
+.card__header{
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card__headerLogo{
+    flex: 0.19;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
