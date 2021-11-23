@@ -1,0 +1,9 @@
+.action{
+    display: flex;
+    width: 7vw;
+    justify-content: space-between;
+    align-items: center;
+}
+.action img{
+    cursor: pointer;
+}

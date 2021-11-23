@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -12,6 +12,7 @@ import IcLampu from "../../assets/ic_lampu.png";
 import icAmpere from "../../assets/ic_ampere.png";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import DateComponent from './DateComponent';
+import { getDataMonitoring } from "./api";
 
 const ImgComponent = styled.img`
   width: ${props => props.width ? props.width : '150px'};
@@ -24,6 +25,21 @@ const Monitoring = () => {
   const tabletMax = useMediaQuery('(max-width:801px)');
   const desktopMin = useMediaQuery('(max-width:1025px)');
   const desktopMax = useMediaQuery('(max-width:1281px)');
+  const [dataMonitoring, setDataMonitoring] = useState()
+
+
+  useEffect(() => {
+    getDataMonitoring().then(result => {
+      const sensorData = {
+        volt: result.feeds[0].field1,
+        watt: result.feeds[0].field2,
+        ampere: result.feeds[0].field3,
+      }
+
+      setDataMonitoring(sensorData);
+
+    })
+  })
 
   return (
     <Box
@@ -59,7 +75,7 @@ const Monitoring = () => {
               >
                 Faktor Daya Listrik
               </Typography>
-              <DateComponent/>
+              <DateComponent />
             </CardContent>
             <CardContent sx={{ height: "100%" }}>
               <Grid
@@ -85,7 +101,7 @@ const Monitoring = () => {
                       opacity: "0.9",
                     }}
                   >
-                    2500
+                    {dataMonitoring ? dataMonitoring.volt : "0"}
                   </Typography>
                 </Box>
                 <Box
@@ -105,7 +121,7 @@ const Monitoring = () => {
                       opacity: "0.9",
                     }}
                   >
-                    2500
+                    {dataMonitoring ? dataMonitoring.watt : "0"}
                   </Typography>
                 </Box>
                 <Box
@@ -125,7 +141,7 @@ const Monitoring = () => {
                       opacity: "0.9",
                     }}
                   >
-                    2500
+                    {dataMonitoring ? dataMonitoring.ampere : "0"}
                   </Typography>
                 </Box>
               </Grid>
@@ -141,7 +157,7 @@ const Monitoring = () => {
               >
                 Kebutuhan Daya
               </Typography>
-              <DateComponent/>
+              <DateComponent />
             </CardContent>
             <CardContent>
               <Box sx={{ display: "flex", marginTop: '12px' }}>
@@ -159,7 +175,7 @@ const Monitoring = () => {
                   variant="h6"
                   sx={{ color: "#3b3b3b", fontWeight: "500", opacity: "0.7", marginLeft: '20px' }}
                 >
-                  25 panel surya 100W
+                  25 lampu 100W
                 </Typography>
               </Box>
               <Box sx={{ display: "flex", marginTop: '12px' }}>

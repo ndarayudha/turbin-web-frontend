@@ -5,6 +5,7 @@ import Option from "./Option";
 import InputForm from "./InputForm";
 import { InputType } from "./InputType";
 import ListInput from "./ListInput";
+import InputFile from './InputFile'
 
 const Wrapper = styled.section`
   margin-bottom: 1rem;
@@ -56,28 +57,39 @@ const InputContainer = (props) => {
         <ListInput
           optionValue={props.optionValue}
           id={props.name}
-          value={props.value}
           width={props.width}
           onChange={props.onChange}
           onBlur={props.onBlur}
         />
       );
       break;
+    case InputType.INPUT_FILE:
+      inputType = (
+        <InputFile
+          id={props.name}
+          value={props.value}
+          width={props.width}
+          onChange={props.onChange}
+        />
+      );
+      break;
     default:
-      <InputForm
-        id={props.name}
-        type={props.type}
-        value={props.value}
-        onChange={props.onChange}
-        onBlur={props.onBlur}
-      />;
+      inputType = (
+        <InputForm
+          id={props.name}
+          type={props.type}
+          value={props.value}
+          onChange={props.onChange}
+          onBlur={props.onBlur}
+        />
+      );
   }
 
   return (
     <Wrapper>
       <InputLabel htmlFor={props.label}>{props.label}</InputLabel>
       {inputType}
-      {inputOption == InputType.INPUT_FORM
+      {inputOption === InputType.INPUT_FORM
         ? props.error && (
             <ErrorInput>{props.name} tidak boleh kosong</ErrorInput>
           )

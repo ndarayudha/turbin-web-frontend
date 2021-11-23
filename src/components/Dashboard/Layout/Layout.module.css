@@ -7,6 +7,7 @@
 }
 
 .layout__content{
+  overflow-y: scroll;
   background-color: #F1F6FF;
   flex: 1;
   padding: 30px;

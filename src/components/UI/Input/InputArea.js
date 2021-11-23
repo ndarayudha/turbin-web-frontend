@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const InputForm = styled.input`
+const InputArea = styled.textarea`
   margin-right: ${(props) => (props.marginListInput ? "2rem" : "0")};
   display: block;
   font: inherit;
@@ -18,4 +18,4 @@ const InputForm = styled.input`
 `;
 
 
-export default InputForm;
+export default InputArea;

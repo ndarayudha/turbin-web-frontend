@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const InputForm = styled.input`
+const InputFile = styled.input`
   margin-right: ${(props) => (props.marginListInput ? "2rem" : "0")};
   display: block;
   font: inherit;
@@ -17,5 +17,14 @@ const InputForm = styled.input`
   }
 `;
 
+const InputFileComponent = (props) => {
+  return (
+    <InputFile
+      type="file"
+      accept="image/png, image/jpeg"
+      onChange={props.onChange}
+    />
+  );
+};
 
-export default InputForm;
+export default InputFileComponent;

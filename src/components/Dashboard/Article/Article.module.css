@@ -9,8 +9,9 @@
 }
 
 .card__headerLogo{
-    flex: 0.19;
+    flex: 0.22;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+

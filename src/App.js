@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import Layout from './components/Dashboard/Layout/Layout'
 
 const App = () => {
-  const isAdmin = false;
+  const isAdmin = true;
 
   return (
     <Box>
@@ -19,7 +19,7 @@ const App = () => {
         <Beranda/>
         <Lokasi/>
         <Monitoring/>
-        <Artikel/>
+        {/* <Artikel/> */}
         <Donasi/>
         <Footer/>
       </React.Fragment> : <Layout/>}

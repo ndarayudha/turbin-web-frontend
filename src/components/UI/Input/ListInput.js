@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
+import InputArea from "./InputArea";
 import InputForm from "./InputForm";
-import CloseCircleOutlined from "@ant-design/icons/CloseCircleOutlined";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import Button from "../../UI/Button/Button";
-import { useListInput } from "../../../hooks/use-input";
 
 const ListInputWrapper = styled.div``;
 
-const ItemContainer = styled.div`
+const ItemContainer = styled.form`
   margin-top: 1rem;
   display: flex;
   align-items: center;
@@ -17,19 +17,23 @@ const ItemContainer = styled.div`
 `;
 
 const ListInput = (props) => {
-  const [listAmount, setListAmount] = useState([]);
-  const [transactionValues, setTransactionValues] = useState([]);
+  const formEl = useRef();
+  const [listAmount, setListAmount] = useState([
+    <ItemContainer key={0} ref={formEl} id={0}>
+      <InputArea
+        width={"25em"}
+        height={"10rem"}
+        form={0}
+        defaultValue=""
+        marginListInput
+        placeholder="paragraf"
+      />
+    </ItemContainer>
+  ]);
+  const [listValue, setListValue] = useState([]);
 
-  const {
-    value: keteranganValue,
-    valueChangeHandler: keteranganChangeHandler,
-  } = useListInput();
-
-  const { value: satuanValue, valueChangeHandler: satuanChangeHandler } =
-    useListInput();
-
-  const cekTransaksi = () => {
-    console.log(listAmount);
+  const handleSubmit = (event) => {
+      props.onChange(listValue)
   };
 
   const decreaseInputHandler = (id) => {
@@ -38,46 +42,61 @@ const ListInput = (props) => {
     setListAmount(items);
   };
 
-  console.log(keteranganValue, satuanValue);
-
   const addInputHandler = () => {
     let key = listAmount.length;
 
+    const getCurrentElementValue = () => {
+      const lastElement = listAmount[listAmount.length - 1]
+  
+      if(lastElement.ref.current === null){
+        alert('error')
+        return;
+      }
+      return {
+        key: lastElement.key,
+        paragraf: lastElement.ref.current[0].value
+      };
+    }
+
+    const currentValue = getCurrentElementValue()
+    
+    console.log(currentValue);
+
+    if(listValue.length === 0){
+      setListValue([currentValue])
+    } else {
+      setListValue([...listValue, currentValue])
+    }
+
     setListAmount([
       ...listAmount,
-      <ItemContainer key={key}>
+      <ItemContainer key={key} ref={formEl} id={key}>
         {/* {<h1>{key}</h1>} */}
-        <InputForm
-          width={"18em"}
-          onChange={keteranganChangeHandler}
+        <InputArea
+          width={"25em"}
+          height={"10rem"}
+          form={key}
+          defaultValue=""
           marginListInput
-          placeholder="keterangan"
+          placeholder="paragraf"
         />
-        <InputForm
-          width={"8em"}
-          onChange={satuanChangeHandler}
-          marginListInput
-          placeholder="satuan"
-        />
-        <InputForm width={"8em"} marginListInput placeholder="kuantitas" />
-        <InputForm width={"14em"} marginListInput placeholder="harga" />
-        <CloseCircleOutlined
-          style={{ fontSize: "1.4rem", color: "#5E2BC6" }}
+        <HighlightOffIcon
+          style={{ fontSize: "1.4rem", color: "#5E2BC6", cursor: "pointer" }}
           onClick={() => decreaseInputHandler(key)}
         />
       </ItemContainer>,
     ]);
   };
-
+  console.log(listValue)
   return (
     <ListInputWrapper>
-      <Button type="button" mb={20} width={20} onClick={addInputHandler}>
-        Tambah Transaksi
-      </Button>
-      <Button type="button" mb={20} width={20} onClick={cekTransaksi}>
-        Cek Transaksi
-      </Button>
       {listAmount}
+      <Button type="button" mb={20} width={20} onClick={addInputHandler}>
+        Tambah Konten
+      </Button>
+      <Button type="button" mb={20} width={20} onClick={handleSubmit}>
+        Preview
+      </Button>
     </ListInputWrapper>
   );
 };
