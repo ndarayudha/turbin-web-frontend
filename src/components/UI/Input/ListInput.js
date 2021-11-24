@@ -6,6 +6,8 @@ import InputArea from "./InputArea";
 import InputForm from "./InputForm";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import Button from "../../UI/Button/Button";
+import { modalAction } from "../../../store/slice/modal-slice";
+import { useDispatch } from "react-redux";
 
 const ListInputWrapper = styled.div``;
 
@@ -28,12 +30,13 @@ const ListInput = (props) => {
         marginListInput
         placeholder="paragraf"
       />
-    </ItemContainer>
+    </ItemContainer>,
   ]);
   const [listValue, setListValue] = useState([]);
+  const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
-      props.onChange(listValue)
+  const handlePreview = () => {
+      dispatch(modalAction.toogle());
   };
 
   const decreaseInputHandler = (id) => {
@@ -46,26 +49,26 @@ const ListInput = (props) => {
     let key = listAmount.length;
 
     const getCurrentElementValue = () => {
-      const lastElement = listAmount[listAmount.length - 1]
-  
-      if(lastElement.ref.current === null){
-        alert('error')
+      const lastElement = listAmount[listAmount.length - 1];
+
+      if (lastElement.ref.current === null) {
+        alert("error");
         return;
       }
       return {
         key: lastElement.key,
-        paragraf: lastElement.ref.current[0].value
+        paragraf: lastElement.ref.current[0].value,
       };
-    }
+    };
 
-    const currentValue = getCurrentElementValue()
-    
+    const currentValue = getCurrentElementValue();
+
     console.log(currentValue);
 
-    if(listValue.length === 0){
-      setListValue([currentValue])
+    if (listValue.length === 0) {
+      setListValue([currentValue]);
     } else {
-      setListValue([...listValue, currentValue])
+      setListValue([...listValue, currentValue]);
     }
 
     setListAmount([
@@ -87,14 +90,14 @@ const ListInput = (props) => {
       </ItemContainer>,
     ]);
   };
-  console.log(listValue)
+  console.log(listValue);
   return (
     <ListInputWrapper>
       {listAmount}
       <Button type="button" mb={20} width={20} onClick={addInputHandler}>
         Tambah Konten
       </Button>
-      <Button type="button" mb={20} width={20} onClick={handleSubmit}>
+      <Button type="button" mb={20} width={20} onClick={handlePreview}>
         Preview
       </Button>
     </ListInputWrapper>

@@ -10,49 +10,49 @@ import IcVa from "../../assets/ic_va.png";
 import IcW from "../../assets/ic_w.png";
 import IcLampu from "../../assets/ic_lampu.png";
 import icAmpere from "../../assets/ic_ampere.png";
-import useMediaQuery from '@mui/material/useMediaQuery';
-import DateComponent from './DateComponent';
+import useMediaQuery from "@mui/material/useMediaQuery";
+import DateComponent from "./DateComponent";
 import { getDataMonitoring } from "./api";
 
 const ImgComponent = styled.img`
-  width: ${props => props.width ? props.width : '150px'};
+  width: ${(props) => (props.width ? props.width : "150px")};
 `;
 
 const Monitoring = () => {
-  const smartphoneMin = useMediaQuery('(max-width:320px)');
-  const smartphoneMax = useMediaQuery('(max-width:480px)');
-  const tabletMin = useMediaQuery('(max-width:600px)');
-  const tabletMax = useMediaQuery('(max-width:801px)');
-  const desktopMin = useMediaQuery('(max-width:1025px)');
-  const desktopMax = useMediaQuery('(max-width:1281px)');
-  const [dataMonitoring, setDataMonitoring] = useState()
+  const smartphoneMin = useMediaQuery("(max-width:320px)");
+  const smartphoneMax = useMediaQuery("(max-width:480px)");
 
+  const [dataMonitoring, setDataMonitoring] = useState();
 
   useEffect(() => {
-    getDataMonitoring().then(result => {
-      const sensorData = {
-        volt: result.feeds[0].field1,
-        watt: result.feeds[0].field2,
-        ampere: result.feeds[0].field3,
-      }
+    const interval = setInterval(() => {
+      getDataMonitoring().then((result) => {
+        const sensorData = {
+          volt: result.feeds[0].field1,
+          watt: result.feeds[0].field2,
+          ampere: result.feeds[0].field3,
+        };
+        setDataMonitoring(sensorData);
+      });
+    }, 10000);
 
-      setDataMonitoring(sensorData);
+    return () => clearInterval(interval);
+  }, []);
 
-    })
-  })
+  console.log(dataMonitoring);
 
   return (
     <Box
       sx={{
         margin: "0",
         height: { lg: "100vh", xs: "120vh" },
-        padding: `${smartphoneMin ? "100px" : '40px'}`,
+        padding: `${smartphoneMin ? "100px" : "40px"}`,
         backgroundColor: "rgba(36, 38, 41, 0.2)",
       }}
       id="monitoring"
     >
       <Grid container alignItems="center" justifyContent="center">
-        <Grid item xs={12} sx={{ marginBottom: '40px' }}>
+        <Grid item xs={12} sx={{ marginBottom: "40px" }}>
           {" "}
           <Typography
             variant="h4"
@@ -66,8 +66,21 @@ const Monitoring = () => {
             Monitoring Daya
           </Typography>
         </Grid>
-        <Grid item container alignItems="center" justifyContent="center" xs={12} lg={6}>
-          <Card variant="outlined" sx={{ minWidth: { xs: 300, lg: 500, }, minHeight: { xs: 100, lg: 300 } }}>
+        <Grid
+          item
+          container
+          alignItems="center"
+          justifyContent="center"
+          xs={12}
+          lg={6}
+        >
+          <Card
+            variant="outlined"
+            sx={{
+              minWidth: { xs: 300, lg: 500 },
+              minHeight: { xs: 100, lg: 300 },
+            }}
+          >
             <CardContent>
               <Typography
                 variant="h5"
@@ -91,7 +104,11 @@ const Monitoring = () => {
                     alignItems: "center",
                   }}
                 >
-                  <ImgComponent src={IcVa} alt="Icon Volt Ampere" width={`${smartphoneMax ? "50px" : "80px"}`} />
+                  <ImgComponent
+                    src={IcVa}
+                    alt="Icon Volt Ampere"
+                    width={`${smartphoneMax ? "50px" : "80px"}`}
+                  />
                   <Typography
                     variant={`${smartphoneMax ? "h4" : "h2"}`}
                     sx={{
@@ -108,10 +125,14 @@ const Monitoring = () => {
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "20px"
+                    marginTop: "20px",
                   }}
                 >
-                  <ImgComponent src={IcW} alt="Icon Volt Ampere" width={`${smartphoneMax ? "50px" : "80px"}`} />
+                  <ImgComponent
+                    src={IcW}
+                    alt="Icon Volt Ampere"
+                    width={`${smartphoneMax ? "50px" : "80px"}`}
+                  />
                   <Typography
                     variant={`${smartphoneMax ? "h4" : "h2"}`}
                     sx={{
@@ -128,10 +149,14 @@ const Monitoring = () => {
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "20px"
+                    marginTop: "20px",
                   }}
                 >
-                  <ImgComponent src={IcW} alt="Icon Volt Ampere" width={`${smartphoneMax ? "50px" : "80px"}`} />
+                  <ImgComponent
+                    src={icAmpere}
+                    alt="Icon Volt Ampere"
+                    width={`${smartphoneMax ? "50px" : "80px"}`}
+                  />
                   <Typography
                     variant={`${smartphoneMax ? "h4" : "h2"}`}
                     sx={{
@@ -148,8 +173,22 @@ const Monitoring = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item container alignItems="center" justifyContent="center" xs={12} lg={6}>
-          <Card variant="outlined" sx={{ minWidth: { xs: 300, lg: 500, }, minHeight: { xs: 100, lg: 300 }, marginTop: { xs: "20px" } }}>
+        <Grid
+          item
+          container
+          alignItems="center"
+          justifyContent="center"
+          xs={12}
+          lg={6}
+        >
+          <Card
+            variant="outlined"
+            sx={{
+              minWidth: { xs: 300, lg: 500 },
+              minHeight: { xs: 100, lg: 300 },
+              marginTop: { xs: "20px" },
+            }}
+          >
             <CardContent>
               <Typography
                 variant="h5"
@@ -160,31 +199,58 @@ const Monitoring = () => {
               <DateComponent />
             </CardContent>
             <CardContent>
-              <Box sx={{ display: "flex", marginTop: '12px' }}>
-                <ImgComponent src={IcLampu} width={`${smartphoneMax ? "50px" : "20px"}`} alt="Icon Volt Ampere" />
+              <Box sx={{ display: "flex", marginTop: "12px" }}>
+                <ImgComponent
+                  src={IcLampu}
+                  width={`${smartphoneMax ? "50px" : "20px"}`}
+                  alt="Icon Volt Ampere"
+                />
                 <Typography
                   variant="h6"
-                  sx={{ color: "#3b3b3b", fontWeight: "500", opacity: "0.7", marginLeft: '20px' }}
+                  sx={{
+                    color: "#3b3b3b",
+                    fontWeight: "500",
+                    opacity: "0.7",
+                    marginLeft: "20px",
+                  }}
                 >
-                  25 lampu 100W
+                  0 Lampu
                 </Typography>
               </Box>
-              <Box sx={{ display: "flex", marginTop: '12px' }}>
-                <ImgComponent src={IcLampu} width={`${smartphoneMax ? "50px" : "20px"}`} alt="Icon Volt Ampere" />
+              <Box sx={{ display: "flex", marginTop: "12px" }}>
+                <ImgComponent
+                  src={IcLampu}
+                  width={`${smartphoneMax ? "50px" : "20px"}`}
+                  alt="Icon Volt Ampere"
+                />
                 <Typography
                   variant="h6"
-                  sx={{ color: "#3b3b3b", fontWeight: "500", opacity: "0.7", marginLeft: '20px' }}
+                  sx={{
+                    color: "#3b3b3b",
+                    fontWeight: "500",
+                    opacity: "0.7",
+                    marginLeft: "20px",
+                  }}
                 >
-                  25 lampu 100W
+                  0 Lampu
                 </Typography>
               </Box>
-              <Box sx={{ display: "flex", marginTop: '12px' }}>
-                <ImgComponent src={IcLampu} width={`${smartphoneMax ? "50px" : "20px"}`} alt="Icon Volt Ampere" />
+              <Box sx={{ display: "flex", marginTop: "12px" }}>
+                <ImgComponent
+                  src={IcLampu}
+                  width={`${smartphoneMax ? "50px" : "20px"}`}
+                  alt="Icon Volt Ampere"
+                />
                 <Typography
                   variant="h6"
-                  sx={{ color: "#3b3b3b", fontWeight: "500", opacity: "0.7", marginLeft: '20px' }}
+                  sx={{
+                    color: "#3b3b3b",
+                    fontWeight: "500",
+                    opacity: "0.7",
+                    marginLeft: "20px",
+                  }}
                 >
-                  25 lampu 100W
+                  0 Lampu
                 </Typography>
               </Box>
             </CardContent>

@@ -6,11 +6,15 @@ import Form from "../../UI/Form/Form";
 import InputContainer from "../../UI/Input/InputContainer";
 import useInput from "../../../hooks/use-input";
 import Button from "../../UI/Button/Button";
+import Modal from "../../UI/Modal/Modal";
+import { useSelector } from "react-redux";
 
 const isNotEmpty = (value) => value.trim() !== "";
 
 const AddArticle = () => {
   const [image, setImage] = useState(null);
+
+  const showModal = useSelector((state) => state.modal.isVisible);
 
   const {
     value: judulValue,
@@ -35,9 +39,9 @@ const AddArticle = () => {
     }
 
     const article = {
-        name: judulValue,
-        img: image
-    }
+      name: judulValue,
+      img: image,
+    };
 
     console.log(article);
 
@@ -59,14 +63,14 @@ const AddArticle = () => {
     const isValidated = validatedInput(file);
 
     if (isValidated) {
-        setImage(file)
+      setImage(file);
       // send to server firebase
     }
   };
 
-  const onChangeList = (data) =>{
-      console.log(data)
-  }
+  const onChangeList = (data) => {
+    console.log(data);
+  };
 
   return (
     <Card>
@@ -87,13 +91,15 @@ const AddArticle = () => {
           onChange={onImageChange}
         />
       </Form>
-
       <InputContainer
         label="Artikel"
         name="transaksi"
         typeInput={InputType.INPUT_LIST}
         onChange={onChangeList}
       />
+      {showModal && (
+        <Modal />
+      )}
       <Button primary width={20} onClick={onSubmitHandler}>
         Proses
       </Button>

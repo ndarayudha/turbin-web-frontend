@@ -14,12 +14,12 @@ const App = () => {
 
   return (
     <Box>
-      {isAdmin ? <React.Fragment>
+      {!isAdmin ? <React.Fragment>
         <Header/>
         <Beranda/>
         <Lokasi/>
         <Monitoring/>
-        {/* <Artikel/> */}
+        <Artikel/>
         <Donasi/>
         <Footer/>
       </React.Fragment> : <Layout/>}
