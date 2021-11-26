@@ -4,7 +4,7 @@ import Card from "../Card/Card";
 import Button from "../Button/Button";
 import ImgSaklar from "../../../assets/img_saklar.jpg";
 import { modalAction } from "../../../store/slice/modal-slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const MyModalBackground = styled(Card)`
   position: absolute;
@@ -60,20 +60,32 @@ const arrayOfParagraph = [
 
 const Modal = (props) => {
   const dispatch = useDispatch();
+  const content = useSelector((state) => state.modal.modalContent);
 
   const handleCloseModal = () => {
     dispatch(modalAction.toogle());
   };
 
+  
+  const paragraphToArray = () => {
+    if (content.content !== null) {
+      let description = content.content;
+      let removeDivider = description.split("|||");
+      return removeDivider; 
+    }
+    return;
+  }
+
   return (
     <MyModalBackground>
       <MyCardContent>
+        {console.log(content)}
         <ModalHeader>Preview</ModalHeader>
         <hr />
         <ModalBody>
           <HeadingImage src={ImgSaklar} alt="gambar saklar" />
-          {arrayOfParagraph.map((value, key) => (
-            <MainParagraph>{value}</MainParagraph>
+          {paragraphToArray().map((value, key) => (
+            <MainParagraph key={key}>{value}</MainParagraph>
           ))}
         </ModalBody>
         <ModalFooter>

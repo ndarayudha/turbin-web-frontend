@@ -4,48 +4,47 @@ import styles from "./AddArticle.module.css";
 import { InputType } from "../../UI/Input/InputType";
 import Form from "../../UI/Form/Form";
 import InputContainer from "../../UI/Input/InputContainer";
-import useInput from "../../../hooks/use-input";
 import Button from "../../UI/Button/Button";
 import Modal from "../../UI/Modal/Modal";
-import { useSelector } from "react-redux";
-
-const isNotEmpty = (value) => value.trim() !== "";
+import { useSelector, useDispatch } from "react-redux";
+import { modalAction } from "../../../store/slice/modal-slice";
 
 const AddArticle = () => {
-  const [image, setImage] = useState(null);
+  const dispatch = useDispatch();
+  const [image, setImage] = useState();
 
   const showModal = useSelector((state) => state.modal.isVisible);
+  const articleContent = useSelector((state) => state.modal.modalContent);
 
-  const {
-    value: judulValue,
-    isValid: judulIsValid,
-    hasError: judulHasError,
-    valueChangeHandler: judulChangeHandler,
-    inputBlurHandler: judulBlurHandler,
-    reset: resetJudulInput,
-  } = useInput(isNotEmpty);
-
-  let formIsValid = false;
-
-  if (judulIsValid) {
-    formIsValid = true;
-  }
+  const formIsValid =
+    image !== null &&
+    articleContent !== null &&
+    articleContent !== null;
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    // console.log(formIsValid);
 
-    if (!formIsValid) {
+    // if (!formIsValid) {
+    //   return;
+    // }
+
+    if (articleContent === null) {
+      alert("Konten tidak boleh kosong");
       return;
     }
 
     const article = {
-      name: judulValue,
+      title: articleContent.title,
       img: image,
+      paragraph: articleContent.content,
     };
 
-    console.log(article);
+    // send data to server
 
-    resetJudulInput();
+    // clear article redux store
+
+    console.log(article);
   };
 
   const validatedInput = (file) => {
@@ -68,8 +67,14 @@ const AddArticle = () => {
     }
   };
 
-  const onChangeList = (data) => {
-    console.log(data);
+  const titleChangeHandler = (e) => {
+    dispatch(
+      modalAction.showModal({
+        title: e.target.value,
+        image: "",
+        content: articleContent !== null ? articleContent.content : "",
+      })
+    );
   };
 
   return (
@@ -79,10 +84,8 @@ const AddArticle = () => {
           label="Judul Artikel"
           name="judul"
           type="text"
-          error={judulHasError}
-          value={judulValue}
-          onChange={judulChangeHandler}
-          onBlur={judulBlurHandler}
+          value={articleContent !== null ? articleContent.title : ""}
+          onChange={titleChangeHandler}
         />
         <InputContainer
           label="Heading Artikel"
@@ -95,11 +98,8 @@ const AddArticle = () => {
         label="Artikel"
         name="transaksi"
         typeInput={InputType.INPUT_LIST}
-        onChange={onChangeList}
       />
-      {showModal && (
-        <Modal />
-      )}
+      {showModal && <Modal />}
       <Button primary width={20} onClick={onSubmitHandler}>
         Proses
       </Button>

@@ -10,8 +10,9 @@ const modalSlice = createSlice({
     showModal(state, action) {
       state.modalContent = {
         title: action.payload.title,
-        message: action.payload.message,
-      }
+        image: action.payload.image,
+        content: action.payload.content,
+      } 
     },
   },
 });
