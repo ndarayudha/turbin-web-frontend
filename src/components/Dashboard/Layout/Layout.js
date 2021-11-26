@@ -4,16 +4,19 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AdminRoutes } from "../../../routes/AppRoutes";
 import styles from "./Layout.module.css";
 import LinearProgress from '@mui/material/LinearProgress';
+import Login from '../Login/Login'
 
 const HomeComponent = lazy(() => import('../Home/Home'));
 const ArticleComponent = lazy(() => import('../Article/Article'))
 const ProfileComponent = lazy(() => import('../Profile/Profile'))
 
 const Layout = () => {
+  const isLogin = false;
+
   return (
     <div>
       <Router>
-        <div className={styles.layout__body}>
+        {!isLogin ? <Login/> : (<div className={styles.layout__body}>
           <Sidebar />
           <div className={styles.layout__content}>
             <Suspense fallback={<LinearProgress/>}>
@@ -30,7 +33,7 @@ const Layout = () => {
             </Switch>
             </Suspense>
           </div>
-        </div>
+        </div>)}
       </Router>
     </div>
   );

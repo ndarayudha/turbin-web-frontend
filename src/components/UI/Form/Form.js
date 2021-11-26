@@ -3,7 +3,6 @@ import styled from "styled-components";
 import PropsType from "prop-types";
 
 const FormElement = styled.form`
-  margin-left: 20px;
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;

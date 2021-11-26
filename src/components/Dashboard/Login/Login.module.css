@@ -1,0 +1,87 @@
+.login{
+    display: flex;
+    background-color: #F1F6FF;
+    width: 100vw;
+    height: 100vh;
+}
+
+.login__left{
+    display: flex;
+    flex-direction: column;
+    background-color: #4690FF;
+    flex: 0.35;
+}
+
+.left__top{
+    background-color: yellow;
+    flex: 0.5;
+    position: relative;
+}
+
+.left__top img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: relative;
+}
+
+.left__top::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    background-color: rgba(70, 144, 255, 0.3);
+    z-index: 2;
+}
+
+.left__bottom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 0.5;
+}
+.left__bottom p{
+    color: white;
+    font-weight: 600;
+    font-size: 2rem;
+    opacity: 0.9;
+}
+.left__bottom img{
+    width: 110px;
+    opacity: 0.9;
+    margin-top: 8px;
+}
+
+.login__right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0.65;
+}
+.login__container{
+    padding: 45px;
+}
+.login__title{
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.login__title img{
+    margin-right: 5px;
+}
+.login__title p{
+    font-weight: 600;
+    opacity: 0.9;
+}
+.login__text{
+    margin-bottom: 60px;
+}
+.login__text p{
+    font-weight: 600;
+    font-size: 2rem;
+    opacity: 0.9;
+}
