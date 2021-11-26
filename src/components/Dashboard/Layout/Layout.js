@@ -2,12 +2,12 @@ import React, {lazy, Suspense} from "react";
 import Sidebar from "../Parts/Sidebar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AdminRoutes } from "../../../routes/AppRoutes";
-import Profile from "../Profile/Profile";
 import styles from "./Layout.module.css";
 import LinearProgress from '@mui/material/LinearProgress';
 
 const HomeComponent = lazy(() => import('../Home/Home'));
 const ArticleComponent = lazy(() => import('../Article/Article'))
+const ProfileComponent = lazy(() => import('../Profile/Profile'))
 
 const Layout = () => {
   return (
@@ -25,7 +25,7 @@ const Layout = () => {
                 <ArticleComponent />
               </Route>
               <Route path={AdminRoutes.PROFILE}>
-                <Profile />
+                <ProfileComponent />
               </Route>
             </Switch>
             </Suspense>

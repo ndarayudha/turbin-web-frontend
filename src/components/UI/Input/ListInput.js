@@ -3,7 +3,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import InputArea from "./InputArea";
-import InputForm from "./InputForm";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import Button from "../../UI/Button/Button";
 import { modalAction } from "../../../store/slice/modal-slice";
