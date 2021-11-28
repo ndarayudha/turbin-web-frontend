@@ -3,13 +3,22 @@ import styles from "./Login.module.css";
 import Button from "../../UI/Button/Button";
 import InputContainer from "../../UI/Input/InputContainer";
 import Card from "../../UI/Card/Card";
-import { InputType } from "../../UI/Input/InputType";
 import Form from "../../UI/Form/Form";
+import Notification from "../../UI/Notification/Notification";
 import ImgProyek from "../../../assets/img_proyek.png";
 import IcFlashWhite from "../../../assets/ic_flash_white.png";
 import IcFlashBlue from "../../../assets/ic_flash_blue.png";
+import {useHistory} from 'react-router-dom'
+
 
 const Login = () => {
+  const history = useHistory();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    
+  }
+
   return (
     <div className={styles.login}>
       <div className={styles.login__left}>
@@ -38,9 +47,10 @@ const Login = () => {
                 name="password"
                 type="password"
               />
-              <Button primary>Login</Button>
+              <Button primary onClick={handleLogin}>Login</Button>
             </Form>
           </div>
+          <Notification/>
         </Card>
       </div>
     </div>

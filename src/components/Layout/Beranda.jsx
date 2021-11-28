@@ -12,10 +12,12 @@ import SwiperCore, {
   Autoplay,
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import ImgProyek from "../../assets/img_proyek.png";
-import ImgBendungan from "../../assets/img_bendungan.jpg";
-import ImgTiang from "../../assets/img_tiang.jpg";
-import ImgArtikel from "../../assets/img_artikel.jpg";
+import ImgSragi from "../../assets/img_sragi_energi.jpeg";
+import ImgProblem from "../../assets/img_diskusi.jpeg";
+import ImgTurbin1 from "../../assets/img_turbin1.jpeg";
+import ImgIot from "../../assets/img_iot.jpeg";
+
+
 
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
@@ -28,29 +30,33 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 SwiperCore.use([Navigation, Pagination, Mousewheel, Keyboard, Autoplay]);
 
 const ImgComponent = styled.img`
-
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  background-position: center;
 `;
 
 const carouselContent = [
   {
     id: 1,
-    img: ImgProyek,
-    desc: "PEMANTAUAN ARUS LISTRIK",
+    img: ImgSragi,
+    desc: "Sragi Energi",
   },
   {
     id: 2,
-    img: ImgBendungan,
-    desc: "MONITORING DAYA LISTRIK TURBIN",
+    img: ImgProblem,
+    desc: "Terbatasnya Distribusi Listrik Suatu Daerah Menjadi Fokus Utama Kami",
   },
   {
     id: 3,
-    img: ImgTiang,
-    desc: "PERKIRAKAN KEBUTUHAN LISTRIK",
+    img: ImgTurbin1,
+    desc: "Solusi Kebutuhan Listrik Dengan Energi Ramah Lingkungan",
   },
   {
     id: 4,
-    img: ImgArtikel,
-    desc: "ARTIKEL DARI KAMI",
+    img: ImgIot,
+    desc: "Terintegrasi Dengan Teknologi Internet of Things",
   },
 ];
 
@@ -90,7 +96,7 @@ const Beranda = () => {
                 "&:before": {
                   content: '""',
                   position: "absolute",
-                  background: "rgba(20, 66, 155, 0.52)",
+                  background: "rgba(20, 66, 155, 0.60)",
                   top: "0",
                   left: "0",
                   width: "100%",
@@ -99,20 +105,20 @@ const Beranda = () => {
               }}
             >
               <Typography
-                variant="h4"
+                variant={smartphoneMax ? "h4" : "h5"}
                 sx={{
                   position: "absolute",
                   color: "white",
                   top: "50%",
                   left: "50%",
                   transform: "translate(-50%, -50%)",
-                  opacity: "0.7",
+                  opacity: "0.6",
                   textAlign: "center",
                 }}
               >
                 {content.desc}
               </Typography>
-              <ImgComponent src={content.img} alt="" />
+              <ImgComponent src={content.img} alt="img conten" />
             </Box>
           </SwiperSlide>
         ))}

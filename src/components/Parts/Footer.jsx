@@ -31,7 +31,7 @@ const Footer = () => {
       }}
     >
       <Grid container spacing={2}>
-        <Grid item xs={12} lg={4} sx={{ width: "100%" }}>
+        <Grid item xs={12} lg={12} sx={{ width: "100%" }}>
           <Box
             sx={{
               width: "100%",
@@ -51,91 +51,12 @@ const Footer = () => {
                 opacity: "0.9",
               }}
             >
-              Turbin Listrik
+              Sragi Energi
             </Typography>
             <ImgComponent src={IcFlash} alt="Icon Flash" width="50px" />
           </Box>
         </Grid>
-        <Grid item xs={12} lg={8} sx={{ display: "flex", marginTop: "20px"}}>
-          <Box
-            sx={{
-              width: "20%",
-              height: "100%",
-              marginLeft: "20px",
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                color: "#fafafa",
-                opacity: "0.9",
-              }}
-            >
-              Title 1
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                color: "#fafafa",
-                opacity: "0.8",
-              }}
-            >
-              Lorem ipsum dolor sit amet, purus sit amet luctus venenatis.
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              width: "20%",
-              height: "100%",
-              marginLeft: "20px",
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                color: "#fafafa",
-                opacity: "0.9",
-              }}
-            >
-              Title 1
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                color: "#fafafa",
-                opacity: "0.8",
-              }}
-            >
-              Lorem ipsum dolor sit amet, purus sit amet luctus venenatis.
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              width: "20%",
-              height: "100%",
-              marginLeft: "20px",
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                color: "#fafafa",
-                opacity: "0.9",
-              }}
-            >
-              Title 1
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                color: "#fafafa",
-                opacity: "0.8",
-              }}
-            >
-              Lorem ipsum dolor sit amet, purus sit amet luctus venenatis.
-            </Typography>
-          </Box>
-        </Grid>
+        
         <Grid item xs={12} lg={12}>
         <Box
           sx={{
@@ -158,7 +79,7 @@ const Footer = () => {
               paddingBottom: "20px"
             }}
           >
-            Copyright 2021 | CV Jayla Tech.Id
+            Copyright 2021 |sragienergi.com
           </Typography>
         </Box>
       </Grid>

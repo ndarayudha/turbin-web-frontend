@@ -10,6 +10,7 @@ import Slide from "@mui/material/Slide";
 import styled from "styled-components";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuIcon from "@mui/icons-material/Menu";
+import {Link} from 'react-router-dom'
 
 const MenuComponent = styled(MenuIcon)`
   border: 1px solid #4690ff;
@@ -150,13 +151,13 @@ const Header = (props) => {
         >
           Monitoring
         </LinkComponent>
-        <LinkComponent
+        {/* <LinkComponent
           id="nav-artikel"
           underline="none"
           onClick={() => onContentClick("artikel", "nav-artikel")}
         >
           Artikel
-        </LinkComponent>
+        </LinkComponent> */}
         <LinkComponent
           id="nav-donasi"
           underline="none"
@@ -164,9 +165,9 @@ const Header = (props) => {
         >
           Donasi
         </LinkComponent>
-        <LinkComponent underline="none" onClick={console.log("login")}>
-          Login
-        </LinkComponent>
+        {/* <LinkComponent underline="none" onClick={console.log("login")}>
+        <Link to={'/dashboard'} style={{textDecoration: "none"}}>Login</Link>
+        </LinkComponent> */}
       </>
     );
   };
@@ -189,7 +190,7 @@ const Header = (props) => {
                 cursor: "pointer",
               }}
             >
-              Turbin Listrik
+              Sragi Energi
             </Typography>
             <Box
               sx={{
@@ -228,13 +229,13 @@ const Header = (props) => {
               >
                 Monitoring
               </LinkComponent>
-              <LinkComponent
+              {/* <LinkComponent
                 id="nav-artikel"
                 underline="none"
                 onClick={() => onMobileNavClick("artikel", "nav-artikel")}
               >
                 Artikel
-              </LinkComponent>
+              </LinkComponent> */}
               <LinkComponent
                 id="nav-donasi"
                 underline="none"
@@ -242,9 +243,9 @@ const Header = (props) => {
               >
                 Donasi
               </LinkComponent>
-              <LinkComponent underline="none" onClick={console.log("login")}>
-                Login
-              </LinkComponent>
+              {/* <LinkComponent underline="none" onClick={console.log("login")}>
+              <Link to={'/dashboard'} style={{textDecoration: "none"}}>Login</Link>
+              </LinkComponent> */}
             </Drawer>
           ) : (
             ""

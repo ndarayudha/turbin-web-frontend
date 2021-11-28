@@ -1,39 +1,47 @@
-import React, {lazy, Suspense} from "react";
+import React, { lazy, Suspense } from "react";
 import Sidebar from "../Parts/Sidebar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AdminRoutes } from "../../../routes/AppRoutes";
 import styles from "./Layout.module.css";
-import LinearProgress from '@mui/material/LinearProgress';
-import Login from '../Login/Login'
+import LinearProgress from "@mui/material/LinearProgress";
+import Login from "../Login/Login";
+import { useLocation, useHistory } from "react-router-dom";
 
-const HomeComponent = lazy(() => import('../Home/Home'));
-const ArticleComponent = lazy(() => import('../Article/Article'))
-const ProfileComponent = lazy(() => import('../Profile/Profile'))
+const HomeComponent = lazy(() => import("../Home/Home"));
+const ArticleComponent = lazy(() => import("../Article/Article"));
+const ProfileComponent = lazy(() => import("../Profile/Profile"));
 
 const Layout = () => {
-  const isLogin = false;
+  const location = useLocation();
+  const history = useHistory();
+  const isLogin = true;
 
   return (
     <div>
       <Router>
-        {!isLogin ? <Login/> : (<div className={styles.layout__body}>
+        <div className={styles.layout__body}>
+          <Switch>
+            <Route path={AdminRoutes.LOGIN}>
+              <Login />
+            </Route>
+          </Switch>
           <Sidebar />
           <div className={styles.layout__content}>
-            <Suspense fallback={<LinearProgress/>}>
-            <Switch>
-              <Route path={AdminRoutes.HOME}>
-                <HomeComponent />
-              </Route>
-              <Route path={AdminRoutes.ARTICLES}>
-                <ArticleComponent />
-              </Route>
-              <Route path={AdminRoutes.PROFILE}>
-                <ProfileComponent />
-              </Route>
-            </Switch>
+            <Suspense fallback={<LinearProgress />}>
+              <Switch>
+                <Route path={AdminRoutes.HOME} exact>
+                  <HomeComponent />
+                </Route>
+                <Route path={AdminRoutes.ARTICLES} exact>
+                  <ArticleComponent />
+                </Route>
+                <Route path={AdminRoutes.PROFILE} exact>
+                  <ProfileComponent />
+                </Route>
+              </Switch>
             </Suspense>
           </div>
-        </div>)}
+        </div>
       </Router>
     </div>
   );
