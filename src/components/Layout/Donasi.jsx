@@ -6,6 +6,9 @@ import Typography from "@mui/material/Typography";
 import ImgSaklar from "../../assets/img_saklar.jpg";
 import IcWhatsapp from "../../assets/ic_whatsapp.png";
 import IcMessage from "../../assets/ic_message.png";
+import IcBankBca from "../../assets/ic_bank_bca.png";
+import IcBankJatim from "../../assets/ic_bank_jatim.png";
+import IcBankBri from "../../assets/ic_bank_bri.png";
 import styled from "styled-components";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -34,11 +37,11 @@ const Donasi = () => {
       id="donasi"
     >
       <Grid container alignItems="center" justifyContent="center">
-        <Grid item lg={6} xs={12}>
+        <Grid item lg={7} xs={12}>
           <Box
             sx={{
               width: { lg: "120%", xs: "100%" },
-              height: "65vh",
+              height: smartphoneMax ? "65vh": "85vh",
               position: "relative",
               padding: "20px 45px",
               borderRadius: "0 12px 12px 0",
@@ -92,20 +95,72 @@ const Donasi = () => {
                 margin="0 10px 0 0"
                 alt="Icon Whatsapp"
               />
-              <Typography variant="body2">+62 895-0526-3214</Typography>
+              <a
+                href="https://wa.me/6289505263214"
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  backgroundColor: "#25D366",
+                  padding: "5px 10px",
+                  borderRadius: "2px",
+                }}
+                target="_blank" rel="noreferrer"
+              >
+                Konsutlasi Donasi
+              </a>
+            </Box>
+            <Typography
+              variant="h5"
+              sx={{
+                color: "#3b3b3b",
+                fontWeight: "600",
+                opacity: "0.8",
+                marginTop: "20px",
+              }}
+            >
+              Donasi Sekarang
+            </Typography>
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: smartphoneMax ? "row" : "column",
+                alignItems: "center",
+                marginTop: "15px"
+              }}
+            >
               <ImgComponent
-                src={IcMessage}
-                width="30px"
-                margin="0 10px 0 20px"
+                src={IcBankBca}
+                width="55px"
+                margin="0px 10px 0 0"
                 alt="Icon Message"
               />
-              <Typography variant="body2">client@gmail.com</Typography>
+              <Typography variant="body2" >8980589065 Rindi Novia</Typography>
+              <ImgComponent
+                src={IcBankJatim}
+                width="55px"
+                margin="0px 10px 0 20px"
+                alt="Icon Message"
+              />
+              <Typography variant="body2">
+                0026354901 Carenza Al Kharraz
+              </Typography>
+              <ImgComponent
+                src={IcBankBri}
+                width="55px"
+                margin="0px 10px 0 20px"
+                alt="Icon Message"
+                style={{ borderRadius: "0" }}
+              />
+              <Typography variant="body2">
+                3274.01.037627.53.0 Albert Gabriel Surbakti
+              </Typography>
             </Box>
           </Box>
         </Grid>
         <Grid
           item
-          lg={6}
+          lg={5}
           xs={12}
           container
           justifyContent="center"

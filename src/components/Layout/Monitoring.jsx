@@ -31,6 +31,7 @@ const Monitoring = () => {
           volt: result.feeds[0].field1,
           watt: result.feeds[0].field2,
           ampere: result.feeds[0].field3,
+          voltDC: result.feeds[0].field4,
         };
         setDataMonitoring(sensorData);
       });
@@ -39,13 +40,11 @@ const Monitoring = () => {
     return () => clearInterval(interval);
   }, []);
 
-  console.log(dataMonitoring);
-
   return (
     <Box
       sx={{
         margin: "0",
-        height: { lg: "100vh", xs: "120vh" },
+        height: { lg: "100vh", xs: "95vh" },
         padding: `${smartphoneMin ? "100px" : "40px"}`,
         backgroundColor: "rgba(36, 38, 41, 0.2)",
       }}
@@ -79,6 +78,7 @@ const Monitoring = () => {
             sx={{
               minWidth: { xs: 300, lg: 500 },
               minHeight: { xs: 100, lg: 300 },
+              alignItems: "start"
             }}
           >
             <CardContent>
@@ -94,20 +94,22 @@ const Monitoring = () => {
               <Grid
                 item
                 container
-                alignItems="center"
+                alignItems="start"
                 flexDirection="column"
                 justifyContent="center"
+                sx={{padding: "0 5rem"}}
               >
                 <Box
                   sx={{
                     display: "flex",
                     alignItems: "center",
+                    justifyContent: "flex-start"
                   }}
                 >
                   <ImgComponent
                     src={IcVa}
                     alt="Icon Volt Ampere"
-                    width={`${smartphoneMax ? "50px" : "80px"}`}
+                    width={`${smartphoneMax ? "50px" : "60px"}`}
                   />
                   <Typography
                     variant={`${smartphoneMax ? "h4" : "h2"}`}
@@ -126,12 +128,13 @@ const Monitoring = () => {
                     display: "flex",
                     alignItems: "center",
                     marginTop: "20px",
+                    justifyItems: "start"
                   }}
                 >
                   <ImgComponent
                     src={IcW}
                     alt="Icon Volt Ampere"
-                    width={`${smartphoneMax ? "50px" : "80px"}`}
+                    width={`${smartphoneMax ? "50px" : "60px"}`}
                   />
                   <Typography
                     variant={`${smartphoneMax ? "h4" : "h2"}`}
@@ -155,7 +158,7 @@ const Monitoring = () => {
                   <ImgComponent
                     src={icAmpere}
                     alt="Icon Volt Ampere"
-                    width={`${smartphoneMax ? "50px" : "80px"}`}
+                    width={`${smartphoneMax ? "50px" : "60px"}`}
                   />
                   <Typography
                     variant={`${smartphoneMax ? "h4" : "h2"}`}
@@ -198,59 +201,23 @@ const Monitoring = () => {
               </Typography>
               <DateComponent />
             </CardContent>
-            <CardContent>
-              <Box sx={{ display: "flex", marginTop: "12px" }}>
+            <CardContent style={{textAlign: "center"}}>
+              <Box sx={{ display: "flex", marginTop: "12px", alignItems: "center", justifyContent: "center" }}>
                 <ImgComponent
                   src={IcLampu}
-                  width={`${smartphoneMax ? "50px" : "20px"}`}
+                  width={`${smartphoneMax ? "50px" : "40px"}`}
                   alt="Icon Volt Ampere"
                 />
                 <Typography
-                  variant="h6"
+                  variant="h4"
                   sx={{
                     color: "#3b3b3b",
-                    fontWeight: "500",
-                    opacity: "0.7",
+                    fontWeight: "600",
+                    opacity: "0.9",
                     marginLeft: "20px",
                   }}
                 >
-                  0 Lampu
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", marginTop: "12px" }}>
-                <ImgComponent
-                  src={IcLampu}
-                  width={`${smartphoneMax ? "50px" : "20px"}`}
-                  alt="Icon Volt Ampere"
-                />
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: "#3b3b3b",
-                    fontWeight: "500",
-                    opacity: "0.7",
-                    marginLeft: "20px",
-                  }}
-                >
-                  0 Lampu
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", marginTop: "12px" }}>
-                <ImgComponent
-                  src={IcLampu}
-                  width={`${smartphoneMax ? "50px" : "20px"}`}
-                  alt="Icon Volt Ampere"
-                />
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: "#3b3b3b",
-                    fontWeight: "500",
-                    opacity: "0.7",
-                    marginLeft: "20px",
-                  }}
-                >
-                  0 Lampu
+                  7 Lampu
                 </Typography>
               </Box>
             </CardContent>
