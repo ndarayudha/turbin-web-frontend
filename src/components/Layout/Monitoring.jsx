@@ -44,7 +44,7 @@ const Monitoring = () => {
     <Box
       sx={{
         margin: "0",
-        height: { lg: "100vh", xs: "95vh" },
+        height: { lg: "100vh", xs: "100vh" },
         padding: `${smartphoneMin ? "100px" : "40px"}`,
         backgroundColor: "rgba(36, 38, 41, 0.2)",
       }}
@@ -97,7 +97,7 @@ const Monitoring = () => {
                 alignItems="start"
                 flexDirection="column"
                 justifyContent="center"
-                sx={{padding: "0 5rem"}}
+                sx={{padding: smartphoneMax ? "0 2rem" : "0 5rem"}}
               >
                 <Box
                   sx={{
@@ -121,6 +121,30 @@ const Monitoring = () => {
                     }}
                   >
                     {dataMonitoring ? dataMonitoring.volt : "0"}
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "20px",
+                  }}
+                >
+                  <ImgComponent
+                    src={IcVa}
+                    alt="Icon Volt Ampere"
+                    width={`${smartphoneMax ? "50px" : "60px"}`}
+                  />
+                  <Typography
+                    variant={`${smartphoneMax ? "h4" : "h2"}`}
+                    sx={{
+                      color: "#3b3b3b",
+                      marginLeft: "20px",
+                      fontWeight: "500",
+                      opacity: "0.9",
+                    }}
+                  >
+                    {dataMonitoring ? "(DC)" + dataMonitoring.voltDC : "0"}
                   </Typography>
                 </Box>
                 <Box
@@ -209,7 +233,7 @@ const Monitoring = () => {
                   alt="Icon Volt Ampere"
                 />
                 <Typography
-                  variant="h4"
+                  variant={`${smartphoneMax ? "h4" : "h2"}`}
                   sx={{
                     color: "#3b3b3b",
                     fontWeight: "600",

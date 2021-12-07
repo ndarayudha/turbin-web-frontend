@@ -106,7 +106,7 @@ const Donasi = () => {
                 }}
                 target="_blank" rel="noreferrer"
               >
-                Konsutlasi Donasi
+                Konsultasi Donasi
               </a>
             </Box>
             <Typography
